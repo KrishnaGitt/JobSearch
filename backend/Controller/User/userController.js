@@ -1,5 +1,6 @@
 import {User} from "../../Model/user.model.js"
 import { ApiError } from "../../Util/ApiError.js";
+import bcrypt from "bcrypt"
 
 export const registor = async (req, res) => {
     try {
@@ -20,7 +21,7 @@ export const registor = async (req, res) => {
         const hashPassword = await bcrypt.hash(password, 10);
         //creating the user
         const createdUser = await User.create({
-            fullName, email, phone, hashPassword, role
+            fullName, email, phone, password:hashPassword, role
         })
         res.status(200).json({
             message:"User created sucessfully",
@@ -81,23 +82,21 @@ export const logout=(req,res)=>{
 }
 
 export const updateProfile=async(req,res)=>{
+    console.log("update profile")
     try {
         const {
             fullName, email, phone, password, skills,bio
         } = req.body;
-        if([fullName, email, phone, password, skills,bio].some((feild)=>
-        feild=="")){
-            throw new ApiError(400,"please enter the required feilds")
-        }
-        const user=await findById(req.userId);
+        const user=await User.findById(req.userId);
         if(!user){
             throw new ApiError(400,"Please login")
         };
-        user.fullName=fullName;
-        user.email=email;
-        user.phone=phone;
-        user.bio=bio;
-        user.skills=skills;
+        if(fullName)user.fullName=fullName;
+        if(email)user.email=email;
+        if(phone)user.phone=phone;
+        if(password)user.bio=bio;
+        if(skills)user.skills=skills;
+        if(bio)user.bio=bio;
         await user.save();
         res.status(200).json({
             message:"records updated",

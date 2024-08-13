@@ -2,16 +2,15 @@ import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 import { ApiError } from "../../Util/ApiError.js"
 
- const verifyUser= (req,res,next)=>{
+ const verifyAdmin= (req,res,next)=>{
    try {
-     const token=req.cookies.token;
+      console.log("req.cookie.token",req.cookie.token)
+     const token=req.cookie.token;
      if(!token){
         throw new ApiError(400,"please login")
      }
      const verifyToken= jwt.verify(token,process.env.ACCESS_TOKEN_SECREAT)
-     console.log("verifyToken",verifyToken)
-     console.log("verifyToken",verifyToken.id)
-     req.userId=verifyToken.id;
+     req.userId=verifyToken._id;
      next();
    } catch (error) {
      res.status(200).json({
@@ -20,4 +19,4 @@ import { ApiError } from "../../Util/ApiError.js"
      })
    }
 }
-export default verifyUser;
+export default verifyAdmin;
