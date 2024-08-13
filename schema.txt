@@ -1,0 +1,10 @@
+job schema
+{
+    "title":"abc",
+    "location":"abc",
+    "description":"abc",
+    "requirement":"abc",
+    "position":3,
+    "salary":123,
+    "jobType":"abc",
+}
