@@ -1,0 +1,12 @@
+import express from "express"
+const router=express.Router();
+import{registor,login,updateProfile,logout} from "../Controller/User/userController.js"
+
+router.route("/user/registor").post(registor);
+router.route("/user/login").post(login);
+router.route("/user/logout").post(logout);
+router.route("/user/updateProfile").post(updateProfile);
+
+
+
+export default router;

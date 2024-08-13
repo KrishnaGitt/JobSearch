@@ -1,5 +1,4 @@
-import { findById } from "../../../../MaleFashion/server/model/user/userModel.js";
-import User from "../../Model/user.model.js"
+import {User} from "../../Model/user.model.js"
 import { ApiError } from "../../Util/ApiError.js";
 
 export const registor = async (req, res) => {
