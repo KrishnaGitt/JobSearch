@@ -2,16 +2,16 @@ import { Company } from "../../Model/company.model.js";
 import { ApiError } from "../../Util/ApiError.js";
 
 export const registorCompany=async (req,res)=>{
-const {name} =req.body;
+const {companyName} =req.body;
 try {
-    if(!name){
-        throw new ApiError(400,"Please enter the company name")
+    if(!companyName){
+        throw new ApiError(400,"Please enter the company Name")
     }
-    const checkCompany=await Company.findOne({name});
+   const checkCompany=await Company.findOne({companyName});
     if(checkCompany){
         throw new ApiError(200,"You cannot same company")
     }
-    const company =await Company.create({name})
+    const company =await Company.create({companyName,userId:req.userId})
     if(!company){
         throw new ApiError(400,"Failed to create company")
     }
@@ -30,7 +30,7 @@ try {
 export const getCompany=async(req,res)=>{
     try {
         const user=req.userId;
-        const company=await Company.find({user});
+        const company=await Company.find({userId:user});
         if(!company){
             throw new ApiError(400,"not able to find the company");
         }
@@ -49,7 +49,7 @@ export const getCompany=async(req,res)=>{
 
 export const getCompanyById=async(req,res)=>{
     try {
-        const companyId=req.parms.id;
+        const companyId=req.params.id;
         const company=await Company.findById(companyId);
         if(!company){
             throw new ApiError(400,"not able to find the company");
