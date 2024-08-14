@@ -72,7 +72,7 @@ export const updateCompany=async(req,res)=>{
         const {name,description,website,location,logo}=req.body;
         const file=req.file;
         const updatedData= {name,description,website,location,logo};
-        const company=await Company.findByIdAndUpdate(req.parms.id,updatedData,{new:true})
+        const company=await Company.findByIdAndUpdate(req.params.id,updatedData,{new:true})
         if(!company){
             throw new ApiError(400,"Failed to update records")
         }

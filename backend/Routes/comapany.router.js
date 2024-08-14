@@ -6,7 +6,7 @@ const router=express.Router();
 router.route("/company/registor").post(verifyUser,registorCompany);
 router.route("/company/getCompany").get(verifyUser,getCompany);
 router.route("/company/getCompanyById/:id").get(getCompanyById);
-router.route("/company/updateCompany").put(updateCompany)
+router.route("/company/updateCompany/:id").put(updateCompany)
 
 
 export default router;
