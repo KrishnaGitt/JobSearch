@@ -22,11 +22,14 @@ const jobSchema=new mongoose.Schema({
     salary:{
         type:Number
     },
+    experience:{
+        type:Number
+    },
     company:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"company"
     },
-    createdBY:{
+    createdBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"user",
         required:true
