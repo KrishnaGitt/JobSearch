@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 import Connection from "./DataBase/Connection.js";
 import cookieParser from "cookie-parser";
 dotenv.config({});
-// import com from "./Routes/comapany.router.js"
+import router from "./Routes/comapany.router.js"
 const app=express();
 app.use(express.json());
 app.use(cookieParser());

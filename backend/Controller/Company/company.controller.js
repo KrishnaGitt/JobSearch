@@ -1,5 +1,5 @@
-import { Comapny } from "../../Model/comapny.model";
-import { ApiError } from "../../Util/ApiError";
+import { Company } from "../../Model/company.model.js";
+import { ApiError } from "../../Util/ApiError.js";
 
 export const registorCompany=async (req,res)=>{
 const {name} =req.body;
@@ -7,11 +7,11 @@ try {
     if(!name){
         throw new ApiError(400,"Please enter the company name")
     }
-    const checkCompany=await Comapny.findOne({name});
+    const checkCompany=await Company.findOne({name});
     if(checkCompany){
         throw new ApiError(200,"You cannot same company")
     }
-    const company =await Comapny.create({name})
+    const company =await Company.create({name})
     if(!company){
         throw new ApiError(400,"Failed to create company")
     }
@@ -30,7 +30,7 @@ try {
 export const getCompany=async(req,res)=>{
     try {
         const user=req.userId;
-        const company=await Comapny.find({user});
+        const company=await Company.find({user});
         if(!company){
             throw new ApiError(400,"not able to find the company");
         }
@@ -50,7 +50,7 @@ export const getCompany=async(req,res)=>{
 export const getCompanyById=async(req,res)=>{
     try {
         const companyId=req.parms.id;
-        const company=await Comapny.findById(companyId);
+        const company=await Company.findById(companyId);
         if(!company){
             throw new ApiError(400,"not able to find the company");
         }
@@ -72,7 +72,7 @@ export const updateCompany=async(req,res)=>{
         const {name,description,website,location,logo}=req.body;
         const file=req.file;
         const updatedData= {name,description,website,location,logo};
-        const company=await Comapny.findByIdAndUpdate(req.parms.id,updatedData,{new:true})
+        const company=await Company.findByIdAndUpdate(req.parms.id,updatedData,{new:true})
         if(!company){
             throw new ApiError(400,"Failed to update records")
         }
