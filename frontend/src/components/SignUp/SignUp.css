@@ -1,0 +1,51 @@
+.form-parent{
+display: flex;
+justify-content: center;
+align-items: center;
+/* width: 50%; */
+}
+.form{
+    border: 2px solid gray;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 60%;
+    margin-top: 40px;
+    padding: 10px;
+}
+.field-div{
+    margin-top: 10px;
+}
+.text-weight{
+    font-weight: bold;
+    text-align: left;
+}
+.radio-parent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.radio-div{
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+
+}
+.file-div{
+    display: flex;
+    justify-content: space-between;   
+}
+.submit-btn{
+    width: 100%;
+    background-color: aqua;
+}
+.form-title{
+    font-size: 52;
+    font-weight: bold;
+}
+.input-text{
+    border-radius: 10px;
+}
+.login-text{
+    color: red;
+    margin-top: 10px;
+}

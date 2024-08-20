@@ -24,8 +24,8 @@ const NavBar = () => {
                         </ul>
                         {!user?(
                             <div className='login-sign-btn'>
-                                <Button className='logout-btn'>Login</Button>
-                                <Button className='logout-btn'>Logout</Button>
+                               <Link to="/login"><Button className='logout-btn'>Login</Button></Link> 
+                               <Link to="/signup"><Button className='logout-btn'>Sign-Up</Button></Link> 
                             </div>
                         ):( <Popover>
                             <PopoverTrigger asChild>
