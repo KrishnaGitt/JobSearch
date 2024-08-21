@@ -4,8 +4,9 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Button } from '../ui/button';
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner';
+import { userRegistorApi } from "../../Api/User/userApi.js"
 
 const SignUp = () => {
   const [input, setInput] = useState({
@@ -15,26 +16,36 @@ const SignUp = () => {
     password: "",
     role: "",
     file: ""
-  })
+  });
+  const navigate = useNavigate()
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value })
   }
-  const changeFileHandler=(e)=>{
-    setInput({...input,file:e.target.files?.[0]})
+  const changeFileHandler = (e) => {
+    setInput({ ...input, file: e.target.files?.[0] })
   }
-  const submitHandler=(e)=>{
+  const submitHandler = (e) => {
     e.preventDefault();
     console.log(input)
-    const form=new FormData();
-    form.append("fullName",input.fullName);
-    form.append("email",input.email);
-    form.append("phone",input.phone);
-    form.append("password",input.password);
-    form.append("role",input.role);
-    if(input.file){
-      form.append("file",input.file);
+    const form = new FormData();
+    form.append("fullName", input.fullName);
+    form.append("email", input.email);
+    form.append("phone", input.phone);
+    form.append("password", input.password);
+    form.append("role", input.role);
+    if (input.file) {
+      form.append("file", input.file);
     }
     console.log(form)
+    try {
+      const res = userRegistorApi(form);
+      if (res.data.sucess) {
+        navigate("/login")
+        toast.success(res.data.message)
+      }
+    } catch (error) {
+      toast.error(error)
+    }
   }
   return (
     <div className='form-parent'>
@@ -107,8 +118,8 @@ const SignUp = () => {
           <Label>Profile</Label>
           <Input
             type='file'
-            accept='image/*' 
-            onChange={changeFileHandler}/>
+            accept='image/*'
+            onChange={changeFileHandler} />
         </div>
         <Button className='submit-btn'>Sign-Up</Button>
         <span>Already have an Account?<Link to="/login" className='login-text'>Login</Link></span>

@@ -1,0 +1,1 @@
+export const USER_REGISTOR_API="/api/v1/user/registor";
