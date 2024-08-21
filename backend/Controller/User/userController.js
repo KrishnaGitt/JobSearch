@@ -3,6 +3,7 @@ import { ApiError } from "../../Util/ApiError.js";
 import bcrypt from "bcrypt"
 
 export const registor = async (req, res) => {
+    console.log("in controller");
     try {
         const {
             fullName, email, phone, password, role
@@ -109,4 +110,11 @@ export const updateProfile=async(req,res)=>{
             sucess:false
         })
     }
+}
+
+export const testController=(req,res)=>{
+    console.log("hello testb api");
+    res.status(200).json({
+        message:"hello"
+    })
 }
