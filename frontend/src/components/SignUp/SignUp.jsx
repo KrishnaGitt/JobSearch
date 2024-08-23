@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner';
 import { userRegistorApi } from "../../Api/User/userApi.js"
 import axios from 'axios';
+// import {USER_TEST} from ""
 
 const SignUp = () => {
   const [input, setInput] = useState({
@@ -25,7 +26,7 @@ const SignUp = () => {
   const changeFileHandler = (e) => {
     setInput({ ...input, file: e.target.files?.[0] })
   }
-  const submitHandler = async (e) => {
+  const submitHandler =  (e) => {
     e.preventDefault();
     console.log(input)
     const form = new FormData();
@@ -39,7 +40,7 @@ const SignUp = () => {
     }
     console.log(form)
     try {
-      const res = await userRegistorApi(form);
+      const res =  userRegistorApi(form);
       if (res.data.sucess) {
         navigate("/login")
         toast.success(res.data.message)
@@ -49,12 +50,12 @@ const SignUp = () => {
     }
   }
   const testapi=async()=>{
-      const res=await axios.post('http://localhost:5000/api/v1/test',{});
+      const res=await axios.post("http://localhost:5000/api/v1/test",{});
       console.log(res);
   }
   return (
     <>
-      <button onClick={testapi} className='test'>Hello</button>
+      <button onClick={testapi} className='bg-red-500'>Hello</button>
       <div className='form-parent'>
         <form onSubmit={submitHandler} className='form'>
           <h1 className='form-title'>Sign-up</h1>
