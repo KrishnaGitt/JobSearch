@@ -49,13 +49,8 @@ const SignUp = () => {
       toast.error(error)
     }
   }
-  const testapi=async()=>{
-      const res=await axios.post("http://localhost:5000/api/v1/test",{});
-      console.log(res);
-  }
   return (
     <>
-      <button onClick={testapi} className='bg-red-500'>Hello</button>
       <div className='form-parent'>
         <form onSubmit={submitHandler} className='form'>
           <h1 className='form-title'>Sign-up</h1>
