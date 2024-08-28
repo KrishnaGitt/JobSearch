@@ -22,12 +22,10 @@ const Login = () => {
   }
   const submitHandler =  (e) => {
     e.preventDefault();
-    console.log(input)
     const form = new FormData();
     form.append("email", input.email);
     form.append("password", input.password);
     form.append("role", input.role);
-    console.log(form)
     try {
       const res =  userRegistorApi(form);
       if (res.data.sucess) {
@@ -38,13 +36,8 @@ const Login = () => {
       toast.error(error)
     }
   }
-  const testapi=async()=>{
-      const res=await axios.post("http://localhost:5000/api/v1/test",{});
-      console.log(res);
-  }
   return (
     <>
-      <button onClick={testapi} className='bg-red-500'>Hello</button>
       <div className='form-parent'>
         <form onSubmit={submitHandler} className='form'>
           <h1 className='form-title'>Sign-up</h1>
