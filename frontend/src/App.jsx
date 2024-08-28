@@ -8,6 +8,7 @@ import SignUp from './components/SignUp/SignUp.jsx';
 import Home from './components/Home/Home.jsx';
 import Jobs from './components/LatestJob/Jobs';
 import Browse from './components/Browse/Browse';
+import Profile from './components/Profile/Profile';
 // import { Toaster } from './components/ui/sonner.tsx';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
       <Route path="/signup" Component={SignUp}/>
       <Route path="/jobs" Component={Jobs}/>
       <Route path="/browse" Component={Browse}/>
+      <Route path="/profile" Component={Profile}/>
     </Routes>
     {/* <Toaster/> */}
     
