@@ -18,9 +18,9 @@ const NavBar = () => {
                     </div>
                     <div className='parent-list'>
                         <ul className='list'>
-                            <li>Home</li>
-                            <li>Jobs</li>
-                            <li>Browse</li>
+                            <Link to="/"><li>Home</li></Link>
+                            <Link to="/jobs"><li>Jobs</li></Link>
+                            <Link to="/browse"><li>Browse</li></Link>
                         </ul>
                         {!user?(
                             <div className='login-sign-btn'>
