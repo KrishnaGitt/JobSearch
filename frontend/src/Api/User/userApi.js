@@ -8,7 +8,7 @@ export const userRegistorApi=async (formData)=>{
         withCredentials:true
     })
 }
-export const getAllUserApi=async()=>{
+export const getAllUserApi=async(page)=>{
     console.log("hello")
-    return await axios.get("http://localhost:5000/api/v1/user/getAllUser");
+    return await axios.get(`http://localhost:5000/api/v1/user/getAllUser?page=${page}`);
 }

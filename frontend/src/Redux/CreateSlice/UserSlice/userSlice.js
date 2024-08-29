@@ -5,15 +5,17 @@ import axios from "axios";
 export const createUser = createAsyncThunk("craeteUserSlice", async(formdata) => {
     try {
         const response=await axios.post("",formdata);
+        
         return response.data;
+        
     } catch (error) {
         alert(error.message)
     };
 });
 
-export const getAllUser=createAsyncThunk("getalluser",()=>{
+export const getAllUser=createAsyncThunk("getalluser",(page)=>{
     try {
-        const response=getAllUserApi();
+        const response=getAllUserApi(page);
         console.log("response",response)
         return response;
     } catch (error) {
@@ -53,7 +55,7 @@ const createUserSlice = createSlice({
             .addCase(getAllUser.fulfilled,(state,action)=>{
                 state.loading=false;
                 state.error=false;
-                state.user={...action.payload}
+                state.user={...action.payload.data}
             })
             .addCase(getAllUser.rejected,(state,action)=>{
                 state.error=true;
