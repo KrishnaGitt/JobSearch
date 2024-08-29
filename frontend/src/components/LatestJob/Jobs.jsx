@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Job from './Job'
 import FilterCards from "../FilterCards/FilterCards.jsx"
+import { useDispatch } from 'react-redux';
+import { getAllUser } from '@/Redux/CreateSlice/UserSlice/userSlice';
 const Jobs = () => {
-    const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8]
+    const dispatch=useDispatch();
+    const [page,setPage]=useState(1);
+    const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8];
+    
+    useEffect(()=>{
+        dispatch(getAllUser()).then((response)=>{
+            console.log("hello",response);
+        })
+    },[page]);
+
     return (
         <div>
             <div>

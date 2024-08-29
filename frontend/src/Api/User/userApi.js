@@ -8,3 +8,7 @@ export const userRegistorApi=async (formData)=>{
         withCredentials:true
     })
 }
+export const getAllUserApi=async()=>{
+    console.log("hello")
+    return await axios.get("http://localhost:5000/api/v1/user/getAllUser");
+}

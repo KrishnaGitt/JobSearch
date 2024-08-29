@@ -12,28 +12,6 @@ import Profile from './components/Profile/Profile';
 // import { Toaster } from './components/ui/sonner.tsx';
 
 function App() {
-  // const app=createBrowserRouter([
-  //   {
-  //     path:'/',
-  //     element:<Home/>
-  //   },
-  //   {
-  //     path:'/login',
-  //     element:<Login/>
-  //   },
-  //   {
-  //     path:'/signup',
-  //     element:<SignUp/>
-  //   },
-  //   {
-  //     path:'/',
-  //     element:<Home/>
-  //   },
-  //   {
-  //     path:'/',
-  //     element:<Home/>
-  //   }
-  // ])
   return (
     <>
     <NavBar/>
@@ -51,6 +29,6 @@ function App() {
     
     </>
   )
-}
+};
 
 export default App

@@ -1,7 +1,8 @@
+import { getAllUserApi } from "@/Api/User/userApi";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const createUser = createAsyncThunk("craeteUserSlice", async(formdata) => {
+export const createUser = createAsyncThunk("craeteUserSlice", async(formdata) => {
     try {
         const response=await axios.post("",formdata);
         return response.data;
@@ -10,10 +11,19 @@ const createUser = createAsyncThunk("craeteUserSlice", async(formdata) => {
     };
 });
 
+export const getAllUser=createAsyncThunk("getalluser",()=>{
+    try {
+        const response=getAllUserApi();
+        console.log("response",response)
+        return response;
+    } catch (error) {
+        console.Console.log("Error Encountered:",error)
+    }
+})
 const createUserSlice = createSlice({
         name:"createUserSlice",
         initialState: {
-            user:[],
+            user:{},
             loading: true,
             error:false
         },
@@ -34,6 +44,21 @@ const createUserSlice = createSlice({
                 state.error=false;
                 state.loading=false;
                 state.user=[...action.payload];
+            })
+            .addCase(getAllUser.pending,(state,action)=>{
+                state.loading=true;
+                state.user={...state.user};
+                state.error=false;
+            })
+            .addCase(getAllUser.fulfilled,(state,action)=>{
+                state.loading=false;
+                state.error=false;
+                state.user={...action.payload}
+            })
+            .addCase(getAllUser.rejected,(state,action)=>{
+                state.error=true;
+                state.loading=false;
+                state.user={...state.user}
             })
         }
 })
